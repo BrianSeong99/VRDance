@@ -1,0 +1,12 @@
+// Right ForeArm
+String deviceLocation = "RForeArm";
+#define API_KEY "AIzaSyD4CZdOeyDZ_U-slopVkP0ZIf6hH4z0QNM"
+#define DATABASE_URL "https://vrdance-rforearm-default-rtdb.firebaseio.com/"
+
+// Right UpperArm
+String deviceLocation = "RUpperArm";
+#define API_KEY "AIzaSyBrjbzDvey1S47C_K0QEurTu1KaAm7wlGc"
+#define DATABASE_URL "https://vrdance-rupperarm-default-rtdb.firebaseio.com/"
+
+// Unity
+DATABASE_URL=https://vrdance-702f7-default-rtdb.firebaseio.com/
