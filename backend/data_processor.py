@@ -18,7 +18,7 @@ unity_features = {
       "rMid1RotX", "rMid1RotY", "rMid1RotZ", "rMid1X", "rMid1Y", "rMid1Z", "rShldrBendRotW", "rShldrBendRotX", "rShldrBendRotY", "rShldrBendRotZ", "rShldrBendX", "rShldrBendY", "rShldrBendZ", "rThumb2RotW", "rThumb2RotX", "rThumb2RotY", "rThumb2RotZ", "rThumb2X", "rThumb2Y", "rThumb2Z", 
     ]
 }
-tracker_features = {"AX", "AY", "AZ", "GX", "GY", "GZ", "LAX","LAY", "LAZ", "MX", "MY", "MZ"}
+tracker_features = ["AX", "AY", "AZ", "GX", "GY", "GZ", "LAX","LAY", "LAZ", "MX", "MY", "MZ"]
 
 # strategy 1: find average of all moves in 1 seconds
 # strategy 2: find the matching timestamps of all three and only keep the matched ones
