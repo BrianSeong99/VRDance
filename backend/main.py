@@ -5,8 +5,6 @@ import torch
 from torch import nn
 from torch.utils.data import Dataset, DataLoader, random_split
 import pytorch_lightning as pl
-import firebase_admin
-# from firebase_admin import db
 
 class LSTMModel(pl.LightningModule):
     def __init__(self, input_size, hidden_size, output_size, num_layers):
@@ -55,29 +53,33 @@ model.eval()
 
 firebase_url_RUpperArm = "https://vrdance-rupperarm-default-rtdb.firebaseio.com/"
 firebase_url_RForeArm = "https://vrdance-rforearm-default-rtdb.firebaseio.com/"
-
-# cred = firebase_admin.credentials.Certificate("./vrdance-rforearm-firebase-adminsdk-14zzw-9a3c82493a.json")
-# default_app = firebase_admin.initialize_app(cred, {'databaseURL':firebase_url_RForeArm})
-
-# # Get a database reference to our posts
-# ref = db.reference("/")
-
-# # Read the data at the posts reference (this is a blocking operation)
-# print(ref.get())
+firebase_url_Unity = "https://vrdance-702f7-default-rtdb.firebaseio.com/"
 
 while True:
-    # response_RUpperArm = requests.get(firebase_url_RUpperArm+'/.json?orderBy=\"$key\"&limitToLast=1')
-    response_RForeArm = requests.get(firebase_url_RForeArm+'/.json?orderBy=\"$key\"&limitToLast=1')
-
-    # print(response_RUpperArm.text)
-    # print(response_RForeArm.text)
-    print()
-
-    # data_RUpperArm = response_RUpperArm.json()
+    response_RForeArm = requests.get(firebase_url_RForeArm+'/latest.json')
+    response_RUpperArm = requests.get(firebase_url_RUpperArm+'/latest.json')
     data_RForeArm = response_RForeArm.json()
+    data_RUpperArm = response_RUpperArm.json()
 
-    print(data_RForeArm)
+    def trackers_to_tensor(firebase_json):
+        tracker_features = ["AX", "AY", "AZ", "GX", "GY", "GZ", "LAX","LAY", "LAZ", "MX", "MY", "MZ"]
+        frame = []
+        for feature in tracker_features:
+            frame.append(float(firebase_json[feature]))
+        return torch.tensor(frame)
+
+    x1_tensor = trackers_to_tensor(data_RForeArm)
+    x2_tensor = trackers_to_tensor(data_RUpperArm)
     
-    # time.sleep(0.25)  # Delay for 250 milliseconds
-    # with torch.no_grad():
-    #     output, = model(x1_tensor, x2_tensor)
+    
+    time.sleep(0.25)  # Delay for 250 milliseconds
+    with torch.no_grad():
+        output, = model(x1_tensor.unsqueeze(0), x2_tensor.unsqueeze(0))
+        data_payload = json.dumps(output.tolist())
+        response = requests.put(firebase_url_Unity+'/latest.json', data=data_payload)
+        # Check the response status
+        if response.status_code == 200:
+            print("Data uploaded successfully!")
+        else:
+            print("Failed to upload data.")
+
