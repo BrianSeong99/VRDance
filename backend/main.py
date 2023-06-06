@@ -45,7 +45,7 @@ class LSTMModel(pl.LightningModule):
 
 model = LSTMModel(input_size=12, hidden_size=128, output_size=35, num_layers=2)
 model.is_inference = True
-checkpoint_path = "lstm_model_jm-1-3.pth"
+checkpoint_path = "lstm_model_jm-2-2.pth"
 print("./models/" + checkpoint_path)
 model.load_state_dict(torch.load("./models/" + checkpoint_path))
 
