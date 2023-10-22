@@ -1,6 +1,6 @@
 import json
 
-dataset_name = "jm-1"
+dataset_name = "jm-2"
 
 # this order cannot be changed, unity.json must be the first one
 filenames = [
@@ -14,8 +14,25 @@ current_body_part = "RightArm"
 body_parts = ["RightArm"]
 unity_features = {
     "RightArm": [
-      "rForearmBendRotW", "rForearmBendRotX", "rForearmBendRotY", "rForearmBendRotZ", "rForearmBendX", "rForearmBendY", "rForearmBendZ", "rHandRotW", "rHandRotX", "rHandRotY", "rHandRotZ", "rHandX", "rHandY", "rHandZ", "rMid1RotW",
-      "rMid1RotX", "rMid1RotY", "rMid1RotZ", "rMid1X", "rMid1Y", "rMid1Z", "rShldrBendRotW", "rShldrBendRotX", "rShldrBendRotY", "rShldrBendRotZ", "rShldrBendX", "rShldrBendY", "rShldrBendZ", "rThumb2RotW", "rThumb2RotX", "rThumb2RotY", "rThumb2RotZ", "rThumb2X", "rThumb2Y", "rThumb2Z", 
+        # "rForearmBendPosX", "rForearmBendPosY", "rForearmBendPosZ", 
+        "rForearmBendX", "rForearmBendY", "rForearmBendZ", 
+        "rForearmBendRotX", "rForearmBendRotY", "rForearmBendRotZ", "rForearmBendRotW", 
+
+        # "rHandPosX", "rHandPosY", "rHandPosZ",
+        "rHandX", "rHandY", "rHandZ",
+        "rHandRotX", "rHandRotY", "rHandRotZ", "rHandRotW", 
+         
+        # "rMid1PosX", "rMid1PosY", "rMid1PosZ", 
+        "rMid1X", "rMid1Y", "rMid1Z", 
+        "rMid1RotX", "rMid1RotY", "rMid1RotZ", "rMid1RotW",
+
+        # "rShldrBendPosX", "rShldrBendPosY", "rShldrBendPosZ", 
+        "rShldrBendX", "rShldrBendY", "rShldrBendZ", 
+        "rShldrBendRotX", "rShldrBendRotY", "rShldrBendRotZ", "rShldrBendRotW",
+
+        # "rThumb2PosX", "rThumb2PosY", "rThumb2PosZ", 
+        "rThumb2X", "rThumb2Y", "rThumb2Z", 
+        "rThumb2RotX", "rThumb2RotY", "rThumb2RotZ", "rThumb2RotW", 
     ]
 }
 tracker_features = ["AX", "AY", "AZ", "GX", "GY", "GZ", "LAX","LAY", "LAZ", "MX", "MY", "MZ"]
